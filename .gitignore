@@ -2,6 +2,7 @@
 *.sassc
 .sass-cache
 capybara-*.html
+/config/initializers/01_secrets.rb
 /config/initializers/secret_token.rb
 .rspec
 /.bundle
