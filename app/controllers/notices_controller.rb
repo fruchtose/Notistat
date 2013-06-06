@@ -1,9 +1,8 @@
 class NoticesController < ApplicationController
-  before_filter :check_for_user
+  before_filter :check_for_user!
 
   private
-    def check_for_user
-      @user = User.find_by_id(params[:user])
-      render :status => :unauthorized unless @user && @user == current_user
+    def check_for_user!
+      authenticate_user! unless admin_signed_in?
     end
 end
