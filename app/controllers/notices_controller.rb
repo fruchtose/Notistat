@@ -4,6 +4,6 @@ class NoticesController < ApplicationController
   private
     def check_for_user
       @user = User.find_by_id(params[:user])
-      render :status => :unauthorized unless @user
+      render :status => :unauthorized unless @user && @user == current_user
     end
 end
