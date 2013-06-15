@@ -6,9 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
 
-  # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  # attr_accessible :title, :body
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info
@@ -22,5 +20,9 @@ class User < ActiveRecord::Base
 
   def notice
     Notice.find(user_id: id).first
+  end
+
+  def to_s
+    email
   end
 end

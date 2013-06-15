@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'pry'
+gem 'pry-nav'
+
 gem 'rails', '3.2.13'
 gem 'ohm'
 

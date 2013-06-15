@@ -1,0 +1,28 @@
+<%
+  url = "/users/#{current_user.id}/notice"
+  method = @notice.new? ? 'post' : 'put'
+%>
+<%= form_tag(url, method: method) do %>
+  <% if @notice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@notice.errors.count, "error") %> prohibited this notice from being saved:</h2>
+
+      <ul>
+      <% @notice.errors do |attribute, error| %>
+        <li><%= "#{attribute.humanize} #{error.humanize}" %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    Status for <%= current_user %>:
+    <%= label_tag :status_0, 'Off' %>
+    <%= radio_button_tag :"notice[status]", '0' %>
+    <%= label_tag :status_1, 'On' %>
+    <%= radio_button_tag :"notice[status]", '1' %>
+  </div>
+  <div class="actions">
+    <%= submit_tag %>
+  </div>
+<% end %>
