@@ -19,4 +19,8 @@ class User < ActiveRecord::Base
     end
     user
   end
+
+  def notice
+    Notice.find(user_id: id).first
+  end
 end
