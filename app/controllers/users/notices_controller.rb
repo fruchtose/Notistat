@@ -1,4 +1,4 @@
-class NoticesController < ApplicationController
+class Users::NoticesController < ApplicationController
   before_filter :check_for_user!
 
   # GET /users/1/notice

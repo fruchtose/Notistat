@@ -3,7 +3,9 @@ Notistat::Application.routes.draw do
 
   devise_for :users,  controllers: {omniauth_callbacks: "authentications"}
   resources :users do
-    resource :notice, except: [:index]
+    scope module: 'users' do
+      resource :notice
+    end
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.
