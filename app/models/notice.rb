@@ -32,10 +32,10 @@ class Notice < Ohm::Model
   private
     def value_to_status(value)
       case value
-      when nil, false, 0
+      when nil, false, 0, "0", "false"
         false
       else
-        value.to_i != 0
+        true
       end
     end
 
