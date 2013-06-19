@@ -41,7 +41,7 @@ class Users::NoticesController < ApplicationController
     respond_to do |format|
       if inner_update
         url = url_for([:edit, @user, :notice])
-        format.html { redirect_to url, notice: 'Notice was successfully created.' }
+        format.html { redirect_to url, notice: "Notice was successfully created as #{@notice}." }
         format.json { render json: @notice, status: :created, location: @notice }
       else
         format.html { render action: "new" }
@@ -56,7 +56,7 @@ class Users::NoticesController < ApplicationController
     respond_to do |format|
       if inner_update
         url = url_for([:edit, @user, :notice])
-        format.html { redirect_to url, notice: 'Notice was successfully updated.' }
+        format.html { redirect_to url, notice: "Notice was successfully updated to #{@notice}." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -82,7 +82,7 @@ class Users::NoticesController < ApplicationController
     def inner_update
       @user = User.find(params[:user_id])
       @notice = @user.notice || Notice.new
-      notice_params = {status: false, user: @user}.merge!((params[:notice] || {}).slice(:status)) 
+      notice_params = {status: false, user: @user}.merge!((params[:notice] || {}).slice(:status))
       @notice.update(notice_params)
     end
 
