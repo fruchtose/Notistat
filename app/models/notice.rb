@@ -35,7 +35,7 @@ class Notice < Ohm::Model
       when nil, false, 0
         false
       else
-        true
+        value.to_i != 0
       end
     end
 
