@@ -16,9 +16,6 @@ class Users::NoticesController < ApplicationController
   # GET /users/1/notice/new
   # GET /users/1/notice/new.json
   def new
-    @user = User.find(params[:user_id])
-    @notice = Notice.new
-
     respond_to do |format|
       if @user.notice
         @notice = @user.notice
@@ -41,11 +38,8 @@ class Users::NoticesController < ApplicationController
   # POST /users/1/notice
   # POST /users/1/notice.json
   def create
-    @user = User.find(params[:user_id])
-    @notice = Notice.new(params[:notice])
-
     respond_to do |format|
-      if @notice.save
+      if inner_update
         url = url_for([:edit, @user, :notice])
         format.html { redirect_to url, notice: 'Notice was successfully created.' }
         format.json { render json: @notice, status: :created, location: @notice }
@@ -59,11 +53,8 @@ class Users::NoticesController < ApplicationController
   # PUT /users/1/notice
   # PUT /users/1/notice.json
   def update
-    @user = User.find(params[:user_id])
-    @notice = @user.notice
-
     respond_to do |format|
-      if @notice.update(params[:notice])
+      if inner_update
         url = url_for([:edit, @user, :notice])
         format.html { redirect_to url, notice: 'Notice was successfully updated.' }
         format.json { head :no_content }
@@ -88,6 +79,13 @@ class Users::NoticesController < ApplicationController
   end
 
   private
+    def inner_update
+      @user = User.find(params[:user_id])
+      @notice = @user.notice || Notice.new
+      notice_params = {status: false, user: @user}.merge!((params[:notice] || {}).slice(:status)) 
+      @notice.update(notice_params)
+    end
+
     def check_for_user!
       authenticate_user! unless user_signed_in?
     end
