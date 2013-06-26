@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info
-    user = User.where(:email => data["email"]).first
+    user = User.find_by_email(data["email"])
 
     unless user
       user = User.create(email: data["email"], password: Devise.friendly_token[0,20])
@@ -18,10 +18,12 @@ class User < ActiveRecord::Base
     user
   end
 
+  # Finds associated notice--ActiveRecord::Base.has_one does not work with Ohm
   def notice
     Notice.find(user_id: id).first
   end
 
+  # Default representation of user is the email address
   def to_s
     email
   end
