@@ -13,6 +13,6 @@ describe Users::NoticesController do
 
   it "should get new" do
     get :new, user_id: @user
-    assert_response :redirect
+    assert_response :success
   end
 end

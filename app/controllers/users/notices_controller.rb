@@ -16,6 +16,8 @@ class Users::NoticesController < ApplicationController
   # GET /users/1/notice/new
   # GET /users/1/notice/new.json
   def new
+    @user = User.find(params[:user_id])
+    
     respond_to do |format|
       if @user.notice
         @notice = @user.notice
