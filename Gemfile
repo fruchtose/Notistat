@@ -12,7 +12,10 @@ gem 'ohm'
 gem 'sqlite3'
 
 group :development, :test do
+  gem 'database_cleaner'
   gem 'rspec-rails'
+  gem 'ffaker'
+  gem 'factory_girl_rails'
 end
 
 # Gems used only for assets and not required

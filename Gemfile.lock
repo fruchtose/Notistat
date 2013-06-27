@@ -39,6 +39,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    database_cleaner (1.0.1)
     devise (2.2.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -48,8 +49,14 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    factory_girl (4.2.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.2.1)
+      factory_girl (~> 4.2.0)
+      railties (>= 3.0.0)
     faraday (0.8.7)
       multipart-post (~> 1.1)
+    ffaker (1.16.1)
     hashie (2.0.5)
     hike (1.2.2)
     httpauth (0.2.0)
@@ -164,7 +171,10 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  database_cleaner
   devise
+  factory_girl_rails
+  ffaker
   jquery-rails
   ohm
   omniauth-google-oauth2
