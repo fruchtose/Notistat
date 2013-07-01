@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 
   # Finds associated notice--ActiveRecord::Base.has_one does not work with Ohm
   def notice
-    Notice.find(user_id: id).first
+    Notice.find(user_id: id).first || Notice.new(user_id: self)
   end
 
   # Default representation of user is the email address

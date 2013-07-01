@@ -19,7 +19,7 @@ class Users::NoticesController < ApplicationController
     @user = User.find(params[:user_id])
     
     respond_to do |format|
-      if @user.notice
+      unless @user.notice.new?
         @notice = @user.notice
         url = url_for([:edit, @user, :notice])
         format.html {redirect_to url, notice: 'A notice already exists for this user.'}
