@@ -8,6 +8,12 @@ class Notice < Ohm::Model
   reference :user, User
   unique :user_id
 
+  def initialize(*args)
+    super
+
+    self.status ||= false
+  end
+
   # Overwrites the user accessor because the Ohm-defined method is not compatible with AciveRecord
   def user
     User.find_by_id(user_id)
