@@ -2,6 +2,7 @@
 class Notice < Ohm::Model
   # Naming module is used so Rails can create RESTful routes
   extend ActiveModel::Naming
+  include ActiveModel::Serializers::JSON
 
   # Boolean state: on or off ("true" or "false" when serialized)
   attribute :status
